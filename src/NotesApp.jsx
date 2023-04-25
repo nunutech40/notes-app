@@ -1,6 +1,6 @@
 import React from 'react';
 import NoteList from './NoteList';
-import { getData } from './utils/notesdata';
+import { getInitialData } from './utils/index';
 import NotesInput from './NotesInput'
 import SearchNotes from './SearchNotes';
 
@@ -8,7 +8,7 @@ class NotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: getData(),
+            notes: getInitialData(),
             searchTerm: '',
         }
 
@@ -57,7 +57,11 @@ class NotesApp extends React.Component {
                 <NotesInput addNoteList={this.onAddNoteHandler} />
                 <h1>Daftar Catatan</h1>
                 <SearchNotes onSearch={this.handleSearch} />
-                <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler} />
+                {filteredNotes.length === 0 ? (
+                    <p>Tidak ada data catatan</p>
+                ) : (
+                    <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler} />
+                )}
             </div>
         );
     }
