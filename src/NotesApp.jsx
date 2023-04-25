@@ -39,7 +39,7 @@ class NotesApp extends React.Component {
 
     render() {
         return (
-            <div className="contact-app">
+            <div className="note-app">
                 <h1>Notes App</h1>
                 <h2>Tuliskan Catatan Hari Ini</h2>
                 <NotesInput addContact={this.onAddContactHandler} />

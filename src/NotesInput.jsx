@@ -48,7 +48,7 @@ class NotesInput extends React.Component {
 
     render() {
         return (
-            <form className='contact-input' onSubmit={this.onSubmitEventHandler}>
+            <form className='note-input' onSubmit={this.onSubmitEventHandler}>
                 <input
                     type="text"
                     placeholder="Judul"
