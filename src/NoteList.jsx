@@ -1,12 +1,12 @@
 import React from 'react';
-import ContactItem from './ContactItem';
+import NoteItem from './NoteItem';
  
-function ContactList({ contacts, onDelete }) {
+function NoteList({ contacts, onDelete }) {
  return (
    <div className="contact-list">
      {
        contacts.map((contact) => (
-         <ContactItem
+         <NoteItem
          key={contact.id}
          id={contact.id}
          onDelete={onDelete}
@@ -18,4 +18,4 @@ function ContactList({ contacts, onDelete }) {
  );
 }
  
-export default ContactList;
+export default NoteList;

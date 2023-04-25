@@ -1,15 +1,15 @@
 import React from 'react';
-import ContactItemBody from './ContactItemBody';
+import NoteItemBody from './NotetItemBody';
 import DeleteButton from './DeleteButton'
  
-function ContactItem({title, body, id, onDelete }) {
+function NoteItem({title, body, id, onDelete }) {
   
  return (
    <div className="contact-item">
-     <ContactItemBody title={title} body={body} />
+     <NoteItemBody title={title} body={body} />
      <DeleteButton id={id} onDelete={onDelete} />
    </div>
  );
 }
  
-export default ContactItem;
+export default NoteItem;

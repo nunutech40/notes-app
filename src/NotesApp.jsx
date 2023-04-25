@@ -1,9 +1,9 @@
 import React from 'react';
-import ContactList from './ContactList';
-import { getData } from '../src/utils/notesdata';
-import ContactInput from './ContactInput'
+import NoteList from './NoteList';
+import { getData } from './utils/notesdata';
+import NotesInput from './NotesInput'
 
-class ContactApp extends React.Component {
+class NotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,12 +42,12 @@ class ContactApp extends React.Component {
             <div className="contact-app">
                 <h1>Notes App</h1>
                 <h2>Tuliskan Catatan Hari Ini</h2>
-                <ContactInput addContact={this.onAddContactHandler} />
+                <NotesInput addContact={this.onAddContactHandler} />
                 <h1>Daftar Catatan</h1>
-                <ContactList contacts={this.state.contacts} onDelete={this.onDeleteHandler} />
+                <NoteList contacts={this.state.contacts} onDelete={this.onDeleteHandler} />
             </div>
         );
     }
 }
 
-export default ContactApp;
+export default NotesApp;

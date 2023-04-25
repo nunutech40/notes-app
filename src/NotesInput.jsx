@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ContactInput extends React.Component {
+class NotesInput extends React.Component {
 
     constructor(props) {
         super(props);
@@ -67,4 +67,4 @@ class ContactInput extends React.Component {
     }
 }
 
-export default ContactInput;
+export default NotesInput;
