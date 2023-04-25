@@ -2,29 +2,32 @@ import React from 'react';
 import NoteList from './NoteList';
 import { getData } from './utils/notesdata';
 import NotesInput from './NotesInput'
+import SearchNotes from './SearchNotes';
 
 class NotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: getData(),
+            notes: getData(),
+            searchTerm: '',
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onAddContactHandler = this.onAddContactHandler.bind(this);
-        
+        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+
     }
 
     onDeleteHandler(id) {
-        const contacts = this.state.contacts.filter(contact => contact.id !== id);
-        this.setState({ contacts });
+        const notes = this.state.notes.filter(note => note.id !== id);
+        this.setState({ notes });
     }
 
-    onAddContactHandler({ title, body }) {
+    onAddNoteHandler({ title, body }) {
         this.setState((prevState) => {
             return {
-                contacts: [
-                    ...prevState.contacts,
+                notes: [
+                    ...prevState.notes,
                     {
                         id: +new Date(),
                         title,
@@ -37,14 +40,24 @@ class NotesApp extends React.Component {
         });
     }
 
+    handleSearch(searchTerm) {
+        this.setState({ searchTerm });
+    }
+
     render() {
+        const filteredNotes = this.state.notes.filter(note =>
+            (note.title && note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())) ||
+            (note.body && note.body.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+        );
+
         return (
             <div className="note-app">
                 <h1>Notes App</h1>
                 <h2>Tuliskan Catatan Hari Ini</h2>
-                <NotesInput addContact={this.onAddContactHandler} />
+                <NotesInput addNoteList={this.onAddNoteHandler} />
                 <h1>Daftar Catatan</h1>
-                <NoteList contacts={this.state.contacts} onDelete={this.onDeleteHandler} />
+                <SearchNotes onSearch={this.handleSearch} />
+                <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler} />
             </div>
         );
     }

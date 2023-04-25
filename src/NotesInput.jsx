@@ -9,10 +9,11 @@ class NotesInput extends React.Component {
         this.state = {
             title: '',
             body: '',
+            remainingChars: 50,
         }
 
-        this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this);
-        this.onTagChangeEventHandler = this.onTagChangeEventHandler.bind(this);
+        this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
+        this.onNoteChangeEventHandler = this.onNoteChangeEventHandler.bind(this);
         this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
     }
 
@@ -20,18 +21,23 @@ class NotesInput extends React.Component {
         this.setState({
             title: '',
             body: '',
+            remainingChars: 50,
         });
     }
 
-    onNameChangeEventHandler(event) {
-        this.setState(() => {
-            return {
-                title: event.target.value,
-            }
-        });
+    onTitleChangeEventHandler(event) {
+        const inputLength = event.target.value.length;
+        if (inputLength <= 50) {
+            this.setState(() => {
+                return {
+                    title: event.target.value,
+                    remainingChars: 50 - inputLength,
+                };
+            });
+        }
     }
 
-    onTagChangeEventHandler(event) {
+    onNoteChangeEventHandler(event) {
         this.setState(() => {
             return {
                 body: event.target.value,
@@ -41,7 +47,7 @@ class NotesInput extends React.Component {
 
     onSubmitEventHandler(event) {
         event.preventDefault();
-        this.props.addContact(this.state);
+        this.props.addNoteList(this.state);
         this.resetForm();
     }
 
@@ -53,13 +59,17 @@ class NotesInput extends React.Component {
                     type="text"
                     placeholder="Judul"
                     value={this.state.title}
-                    onChange={this.onNameChangeEventHandler}
+                    onChange={this.onTitleChangeEventHandler}
                 />
-                <input
-                    type="text"
+                <p>{this.state.remainingChars}</p>
+                <textarea
+                    className="note-textarea"
                     placeholder="Catatan"
                     value={this.state.body}
-                    onChange={this.onTagChangeEventHandler}
+                    onChange={this.onNoteChangeEventHandler}
+                    rows={4}
+                    cols={50}
+                    style={{ resize: 'vertical' }}
                 />
                 <button type="submit">Tambah</button>
             </form>

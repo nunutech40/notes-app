@@ -1,88 +1,164 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-   
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: whitesmoke;
-  }
-   
-  img {
-    width: 100%;
-  }
-   
-  .note-app {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 16px;
-   
-  }
-   
-  .note-app  h1 {
-    font-weight: normal;
-    font-size: 48px;
-    margin-bottom: 32px;
-  }
-   
-  .note-item {
-    display: flex;
-    align-items: center;
-    margin: 24px 0;
-    border: 1px dashed black;
-    padding: 16px;
-    border-radius: 8px;
-  }
-   
-  .note-item__image img {
-    width: 64px;
-    border-radius: 50%;
-  }
-   
-  .note-item__body {
-    margin-left: 8px;
-    padding-left: 8px;
-    border-left: 1px solid #aaa;
-    flex: 1;
-  }
-   
-  .note-item__title {
-    padding: 4px 0;
-  }
-   
-  .note-item__notes {
-    font-weight: lighter;
-  }
-   
-  .note-item__delete {
-    padding: 8px;
-    font-size: 18px;
-    background-color: orangered;
-    color: white;
-    border: 0;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-   
-  .note-input {
-    border: 1px dashed black;
-    padding: 16px;
-    margin: 14px 0;
-    border-radius: 8px;
-    margin-bottom: 32px;
-  }
-   
-  .note-input input {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    font-family: 'Inter', sans-serif;
-  }
-   
-  .note-input button {
-    width: 100%;
-    padding: 8px;
-    font-family: 'Inter', sans-serif;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f2f5;
+  line-height: 1.5;
+  color: #333;
+}
+
+img {
+  width: 100%;
+}
+
+.note-app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.note-app h1 {
+  font-weight: 600;
+  font-size: 36px;
+  margin-bottom: 32px;
+  color: #333;
+}
+
+.note-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 24px 0;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-item__image img {
+  width: 64px;
+  border-radius: 50%;
+}
+
+.note-item__body {
+  margin-left: 16px;
+  padding-left: 8px;
+  border-left: 2px solid #aaa;
+  flex: 1;
+}
+
+.note-item__title {
+  padding: 4px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.note-item__notes {
+  font-weight: lighter;
+}
+
+.note-item__delete {
+  padding: 8px;
+  font-size: 18px;
+  background-color: orangered;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.note-input {
+  border: 1px dashed black;
+  padding: 16px;
+  margin: 14px 0;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-input input,
+.note-input textarea {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.note-input button {
+  width: 100%;
+  padding: 8px;
+  font-family: 'Inter', sans-serif;
+  background-color: #007bff;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.note-input button:hover {
+  background-color: #0056b3;
+}
+
+.note-input {
+  width: 100%;
+}
+
+.note-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.search-notes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.search-notes form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  width: 100%;
+}
+
+.search-notes .search-input {
+  border: none;
+  font-family: 'Inter', sans-serif;
+  padding: 8px;
+  outline: none;
+  flex: 1;
+  width: calc(100% - 80px);
+}
+
+.search-notes .search-button {
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  background-color: #007bff;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.search-notes .search-button:hover {
+  background-color: #0056b3;
+}
+
+
