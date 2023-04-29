@@ -1,6 +1,6 @@
 import React from 'react';
-import NoteItemBody from './NotetItemBody';
-import DeleteButton from './DeleteButton'
+import NoteItemBody from '../components/NotetItemBody';
+import DeleteButton from '../components/DeleteButton'
  
 function NoteItem({title, body, id, onDelete }) {
   

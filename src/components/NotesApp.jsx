@@ -1,8 +1,8 @@
 import React from 'react';
-import NoteList from './NoteList';
-import { getInitialData } from './utils/index';
-import NotesInput from './NotesInput'
-import SearchNotes from './SearchNotes';
+import NoteList from '../components/NoteList';
+import { getInitialData } from '../utils/index';
+import NotesInput from '../components/NotesInput'
+import SearchNotes from '../components/SearchNotes';
 
 class NotesApp extends React.Component {
     constructor(props) {
