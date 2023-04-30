@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePageWrapper from './pages/HomePage';
 import AddNotePage from './pages/AddNotePage';
 import DetailNotes from './pages/DetailNotes';
-
+import { notes } from './utils';
 
 function NotesApp() {
+
   return (
     <div className="note-app">
       <header className='notes-app__header'>
@@ -14,13 +15,11 @@ function NotesApp() {
         <Navigation />
       </header>
       <main>
-        <Routes>
-          <Route path="/" element={<HomePageWrapper />}>
-            <Route index />
-            <Route path="/detail/:id" element={<DetailNotes />} />
-          </Route>
-          <Route path="/add" element={<AddNotePage />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<HomePageWrapper/>} />
+        <Route path="/add" element={<AddNotePage />} />
+        <Route path="/detail/:id" element={<DetailNotes notes={notes} />} />
+      </Routes>
       </main>
     </div>
   );

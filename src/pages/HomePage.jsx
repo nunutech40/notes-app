@@ -19,7 +19,6 @@ function HomePageWrapper() {
 
     return (
         <>
-        <DetailNotes notes={notes} />
         <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
         </>
     )

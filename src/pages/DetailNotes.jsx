@@ -2,9 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { showFormattedDate } from '../utils/index';
 
-const DetailNotes = ({ notes }) => {
+
+const DetailNote = ({ notes }) => {
   const { id } = useParams();
   const note = notes.find((note) => note.id === parseInt(id));
+
+  console.log(`cek id: ${id}`)
+  console.log(`cek note: ${note}`)
 
   return note ? (
     <div className="note-detail">
@@ -19,4 +23,4 @@ const DetailNotes = ({ notes }) => {
   );
 };
 
-export default DetailNotes;
+export default DetailNote;

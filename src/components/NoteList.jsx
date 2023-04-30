@@ -10,6 +10,7 @@ function NoteList({ notes }) {
          key={note.id}
          id={note.id}
          dateCreated={note.createdAt}
+         noteId={note.id}
          {...note}
          />
        ))
