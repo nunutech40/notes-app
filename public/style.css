@@ -1,9 +1,12 @@
-* {
+/* Reset CSS */
+
+  {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Body styling */
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f0f2f5;
@@ -11,28 +14,34 @@ body {
   color: #333;
 }
 
+/* Image styling */
 img {
   width: 100%;
 }
 
+/* Main container styling */
 .note-app {
   max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
 }
 
+/* Main title styling */
 .note-app h1 {
   font-weight: 600;
   font-size: 36px;
   margin-bottom: 32px;
   color: #333;
 }
+
+/* Note list styling */
 .note-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 16px;
 }
 
+/* Note item styling */
 .note-item {
   display: flex;
   flex-direction: column;
@@ -43,40 +52,42 @@ img {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 0;
-  padding-bottom: 100%; /* Adjust this value for the height */
   position: relative;
 }
 
+/* Note item notes styling */
 .note-item__notes {
   font-weight: lighter;
-  word-wrap: break-word; /* Allow long words to wrap */
+  word-wrap: break-word;
 }
 
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
   .note-list {
-    grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns on smaller screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .note-list {
-    grid-template-columns: 1fr; /* Adjust the number of columns on very small screens */
+    grid-template-columns: 1fr;
   }
 }
 
+/* Note item image styling */
 .note-item__image img {
   width: 64px;
   border-radius: 50%;
 }
 
+/* Note item body styling */
 .note-item__body {
   margin-left: 16px;
   padding-left: 8px;
   flex: 1;
 }
 
+/* Note item title styling */
 .note-item__title {
   padding: 4px 0;
   font-weight: bold;
@@ -84,10 +95,7 @@ img {
   flex: 1;
 }
 
-.note-item__notes {
-  font-weight: lighter;
-}
-
+/* Note item delete button styling */
 .note-item__delete {
   padding: 8px;
   font-size: 18px;
@@ -98,6 +106,7 @@ img {
   cursor: pointer;
 }
 
+/* Note input form styling */
 .note-input {
   border: 1px dashed black;
   padding: 16px;
@@ -108,6 +117,7 @@ img {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Note input field styling */
 .note-input input,
 .note-input textarea {
   display: block;
@@ -119,6 +129,7 @@ img {
   border-radius: 4px;
 }
 
+/* Note input button styling */
 .note-input button {
   width: 100%;
   padding: 8px;
@@ -132,20 +143,19 @@ img {
   transition: background-color 0.3s;
 }
 
+/* Note input button hover effect */
 .note-input button:hover {
   background-color: #0056b3;
 }
 
-.note-input {
-  width: 100%;
-}
-
+/* Note textarea styling */
 .note-textarea {
   width: 100%;
   box-sizing: border-box;
   resize: vertical;
 }
 
+/* Search notes container styling */
 .search-notes {
   display: flex;
   justify-content: center;
@@ -153,6 +163,7 @@ img {
   margin-bottom: 32px;
 }
 
+/* Search notes form styling */
 .search-notes form {
   display: flex;
   align-items: center;
@@ -164,6 +175,7 @@ img {
   width: 100%;
 }
 
+/* Search input field styling */
 .search-notes .search-input {
   border: none;
   font-family: 'Inter', sans-serif;
@@ -173,6 +185,7 @@ img {
   width: calc(100% - 80px);
 }
 
+/* Search button styling */
 .search-notes .search-button {
   padding: 8px 16px;
   font-family: 'Inter', sans-serif;
@@ -185,13 +198,12 @@ img {
   transition: background-color 0.3s;
 }
 
+/* Search button hover effect */
 .search-notes .search-button:hover {
   background-color: #0056b3;
 }
 
-
-
-/* Style the header */
+/* Header styling */
 .notes-app__header {
   display: flex;
   justify-content: space-between;
@@ -201,36 +213,81 @@ img {
   border-bottom: 1px solid #eaeaea;
 }
 
-/* Style the title */
+/* Header title styling */
 .notes-app__title {
   font-size: 24px;
 }
 
-/* Style the navigation */
+/* Navigation container styling */
 .nav {
   display: inline-flex;
 }
 
-/* Style the navigation list */
+/* Navigation list styling */
 .nav__list {
   display: flex;
   list-style-type: none;
 }
 
-/* Style the navigation items */
+/* Navigation item styling */
 .nav__item {
   margin-left: 20px;
 }
 
-/* Style the navigation links */
+/* Navigation link styling */
 .nav__link {
   text-decoration: none;
   color: #333;
   transition: color 0.3s;
 }
 
-/* Style the navigation links on hover */
+/* Navigation link hover effect */
 .nav__link:hover {
   color: #007bff;
 }
 
+/* Note item detail link styling */
+.note-item__detail-link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+/* Note item detail link hover effect */
+.note-item__detail-link:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* NoteDetail.css */
+.note-detail {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-detail__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.note-detail__content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.note-detail__date {
+  font-size: 14px;
+  color: #777;
+  margin-top: 16px;
+}

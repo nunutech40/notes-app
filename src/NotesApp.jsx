@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePageWrapper from './pages/HomePage';
 import AddNotePage from './pages/AddNotePage';
+import DetailNotes from './pages/DetailNotes';
 
 
 function NotesApp() {
@@ -14,7 +15,10 @@ function NotesApp() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<HomePageWrapper />} />
+          <Route path="/" element={<HomePageWrapper />}>
+            <Route index />
+            <Route path="/detail/:id" element={<DetailNotes />} />
+          </Route>
           <Route path="/add" element={<AddNotePage />} />
         </Routes>
       </main>

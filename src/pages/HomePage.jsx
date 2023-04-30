@@ -3,6 +3,7 @@ import NoteList from '../components/NoteList';
 import { notes } from '../utils/index';
 import SearchBar from '../components/SearchBar';
 import { useSearchParams } from 'react-router-dom';
+import DetailNotes from "./DetailNotes"
 
 function HomePageWrapper() {
     // Menggunakan hook useSearchParams untuk mengakses dan mengubah parameter pencarian pada URL
@@ -16,7 +17,12 @@ function HomePageWrapper() {
         setSearchParams({ keyword });
     }
 
-    return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+    return (
+        <>
+        <DetailNotes notes={notes} />
+        <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+        </>
+    )
 }
 
 class HomePage extends React.Component {
@@ -52,6 +58,7 @@ class HomePage extends React.Component {
 
         return (
             <div className="note-app">
+
                 <h1>Daftar Catatan</h1>
                 <SearchBar keyword={this.state.searchTerm} keywordChange={this.handleSearch} />
                 {filteredNotes.length === 0 ? (

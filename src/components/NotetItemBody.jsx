@@ -1,7 +1,8 @@
 import React from 'react';
 import { showFormattedDate } from '../utils/index';
+import { Link } from 'react-router-dom';
 
-function NoteItemBody({ title, body, dateCreated }) {
+function NoteItemBody({ title, body, dateCreated, id }) {
     const maxWords = 20; // Maximum number of words to display
     const maxChars = 30;
 
@@ -23,11 +24,16 @@ function NoteItemBody({ title, body, dateCreated }) {
     return (
         <div className="note-item__content">
             <h2 className="note-item__title">{truncateChars(title, maxChars)}</h2>
-            
+
             <h5>{showFormattedDate(dateCreated)}</h5>
 
             <p className="note-item__body">{truncateWords(body, maxWords)}</p>
+
+            <Link to={`/detail/${id}`} className="note-item__detail-link">
+                <p>Lihat Detail Note...</p>
+            </Link>
         </div>
+
     );
 }
 
