@@ -7,17 +7,18 @@ function AddNotePage() {
   const navigate = useNavigate();
   
   function onAddNoteHandler(notes) {
-    console.log(`notes title: ${notes.title} notes body: ${notes.body}`)
     addNote(notes);
     navigate('/');
   }
  
   return (
-    <section>
-      <h2>Tambah kontak</h2>
-      <NotesInput addNoteList={onAddNoteHandler} />
-    </section>
-  )
+    <div className="note-app">
+      <section>
+        <h2>Tambah kontak</h2>
+        <NotesInput addNoteList={onAddNoteHandler} />
+      </section>
+    </div>
+  );
 }
  
 export default AddNotePage;
