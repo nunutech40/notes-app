@@ -162,3 +162,46 @@ img {
 }
 
 
+
+/* Style the header */
+.notes-app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* Style the title */
+.notes-app__title {
+  font-size: 24px;
+}
+
+/* Style the navigation */
+.nav {
+  display: inline-flex;
+}
+
+/* Style the navigation list */
+.nav__list {
+  display: flex;
+  list-style-type: none;
+}
+
+/* Style the navigation items */
+.nav__item {
+  margin-left: 20px;
+}
+
+/* Style the navigation links */
+.nav__link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+/* Style the navigation links on hover */
+.nav__link:hover {
+  color: #007bff;
+}

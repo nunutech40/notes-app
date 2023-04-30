@@ -1,43 +1,34 @@
 import React from 'react';
 import NoteList from '../components/NoteList';
-import { getInitialData } from '../utils/index';
-import NotesInput from '../components/NotesInput'
+import { notes } from '../utils/index';
 import SearchNotes from '../components/SearchNotes';
+import { useSearchParams } from 'react-router-dom';
 
-class NotesApp extends React.Component {
+function HomePageWrapper() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const keyword = searchParams.get('keyword');
+    function changeSearchParams(keyword) {
+      setSearchParams({ keyword });
+    }
+  
+    return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+  }
+
+class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: getInitialData(),
+            notes: notes,
             searchTerm: '',
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-
     }
 
     onDeleteHandler(id) {
         const notes = this.state.notes.filter(note => note.id !== id);
         this.setState({ notes });
-    }
-
-    onAddNoteHandler({ title, body }) {
-        this.setState((prevState) => {
-            return {
-                notes: [
-                    ...prevState.notes,
-                    {
-                        id: +new Date(),
-                        title,
-                        body,
-                        archived: false,
-                        createdAt: new Date().toISOString(),
-                    }
-                ]
-            }
-        });
     }
 
     handleSearch(searchTerm) {
@@ -53,8 +44,6 @@ class NotesApp extends React.Component {
         return (
             <div className="note-app">
                 <h1>Notes App</h1>
-                <h2>Tuliskan Catatan Hari Ini</h2>
-                <NotesInput addNoteList={this.onAddNoteHandler} />
                 <h1>Daftar Catatan</h1>
                 <SearchNotes onSearch={this.handleSearch} />
                 {filteredNotes.length === 0 ? (
@@ -67,4 +56,4 @@ class NotesApp extends React.Component {
     }
 }
 
-export default NotesApp;
+export default HomePage;

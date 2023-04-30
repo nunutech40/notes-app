@@ -1,4 +1,4 @@
-const getInitialData = () => ([
+let notes = [
   {
     id: 1,
     title: "Babel",
@@ -41,7 +41,7 @@ const getInitialData = () => ([
     createdAt: '2022-04-14T04:27:34.572Z',
     archived: false,
   },
-]);
+];
 
 const showFormattedDate = (date) => {
   const options = {
@@ -53,4 +53,9 @@ const showFormattedDate = (date) => {
   return new Date(date).toLocaleDateString("id-ID", options)
 }
 
-export { getInitialData, showFormattedDate };
+function addNote(note) {
+  notes = [...notes, { id: +new Date(), createdAt: new Date(), archived: false, ...note }];
+}
+ 
+
+export { notes, showFormattedDate, addNote };
