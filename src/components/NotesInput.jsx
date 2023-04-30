@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class NotesInput extends React.Component {
 
@@ -76,5 +77,9 @@ class NotesInput extends React.Component {
         )
     }
 }
+
+NotesInput.propTypes = {
+    addNoteList: PropTypes.func.isRequired
+};
 
 export default NotesInput;

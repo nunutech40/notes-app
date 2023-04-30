@@ -1,7 +1,8 @@
 import React from 'react';
 import NoteItem from '../components/NoteItem';
+import PropTypes from 'prop-types';
  
-function NoteList({ notes, onDelete }) {
+function NoteList({ notes }) {
  return (
    <div className="note-list">
      {
@@ -11,13 +12,16 @@ function NoteList({ notes, onDelete }) {
          id={note.id}
          dateCreated={note.createdAt}
          noteId={note.id}
-         onDelete={onDelete}
          {...note}
          />
        ))
      }
    </div>
  );
+}
+
+NoteList.propType = {
+  notes: PropTypes.object.isRequired
 }
  
 export default NoteList;

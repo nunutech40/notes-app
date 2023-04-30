@@ -3,6 +3,7 @@ import NoteList from '../components/NoteList';
 import { notes } from '../utils/index';
 import SearchBar from '../components/SearchBar';
 import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function HomePageWrapper() {
     // Menggunakan hook useSearchParams untuk mengakses dan mengubah parameter pencarian pada URL
@@ -22,6 +23,11 @@ function HomePageWrapper() {
         </>
     )
 }
+
+HomePageWrapper.propTypes = {
+    defaultKeyword: PropTypes.string,
+    keywordChange: PropTypes.func.isRequired,
+};
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -86,5 +92,11 @@ class HomePage extends React.Component {
 
     }
 }
+
+HomePage.propTypes = {
+    defaultKeyword: PropTypes.string,
+    keywordChange: PropTypes.func.isRequired,
+};
+
 
 export default HomePageWrapper;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { showFormattedDate } from '../utils/index';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function NoteItemBody({ title, body, dateCreated, id, onDelete }) {
     const maxWords = 20; // Maximum number of words to display
@@ -31,12 +32,20 @@ function NoteItemBody({ title, body, dateCreated, id, onDelete }) {
 
             <p className="note-item__body">{truncateWords(body, maxWords)}</p>
 
-            <Link  onDelete={onDelete} to={`/detail/${id}`} className="note-item__detail-link">
+            <Link onDelete={onDelete} to={`/detail/${id}`} className="note-item__detail-link">
                 <p>Lihat Detail Note...</p>
             </Link>
         </div>
 
     );
+}
+
+NoteItemBody.propType = {
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    dateCreated: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired
 }
 
 export default NoteItemBody;
