@@ -52,7 +52,6 @@ class HomePage extends React.Component {
 
         return (
             <div className="note-app">
-                <h1>Notes App</h1>
                 <h1>Daftar Catatan</h1>
                 <SearchBar keyword={this.state.searchTerm} keywordChange={this.handleSearch} />
                 {filteredNotes.length === 0 ? (

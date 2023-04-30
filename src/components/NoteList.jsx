@@ -9,6 +9,7 @@ function NoteList({ notes }) {
          <NoteItem
          key={note.id}
          id={note.id}
+         dateCreated={note.createdAt}
          {...note}
          />
        ))

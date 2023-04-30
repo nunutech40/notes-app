@@ -81,6 +81,7 @@ img {
   padding: 4px 0;
   font-weight: bold;
   font-size: 18px;
+  flex: 1;
 }
 
 .note-item__notes {

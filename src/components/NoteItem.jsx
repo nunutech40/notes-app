@@ -1,11 +1,11 @@
 import React from 'react';
 import NoteItemBody from '../components/NotetItemBody';
  
-function NoteItem({title, body, id, onDelete }) {
+function NoteItem({title, body, dateCreated }) {
   
  return (
    <div className="note-item">
-     <NoteItemBody title={title} body={body} />
+     <NoteItemBody title={title} body={body} dateCreated={dateCreated} />
    </div>
  );
 }

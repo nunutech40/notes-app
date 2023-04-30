@@ -7,7 +7,7 @@ import AddNotePage from './pages/AddNotePage';
 
 function NotesApp() {
   return (
-    <div className="contact-app">
+    <div className="note-app">
       <header className='notes-app__header'>
         <h1 className='notes-app__title'>Aplikasi Note</h1>
         <Navigation />
