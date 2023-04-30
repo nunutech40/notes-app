@@ -1,25 +1,31 @@
 import React from 'react';
 import NoteList from '../components/NoteList';
 import { notes } from '../utils/index';
-import SearchNotes from '../components/SearchNotes';
+import SearchBar from '../components/SearchBar';
 import { useSearchParams } from 'react-router-dom';
 
 function HomePageWrapper() {
+    // Menggunakan hook useSearchParams untuk mengakses dan mengubah parameter pencarian pada URL
     const [searchParams, setSearchParams] = useSearchParams();
+
+    // Mengambil nilai 'keyword' dari parameter pencarian
     const keyword = searchParams.get('keyword');
+
+    // Fungsi untuk mengubah parameter pencarian 'keyword' pada URL
     function changeSearchParams(keyword) {
-      setSearchParams({ keyword });
+        setSearchParams({ keyword });
     }
-  
+
     return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
-  }
+}
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             notes: notes,
-            searchTerm: '',
+            searchTerm: props.defaultKeyword || '',
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
@@ -31,21 +37,24 @@ class HomePage extends React.Component {
         this.setState({ notes });
     }
 
+    // Method untuk mengubah nilai searchTerm pada state
+    // dan memanggil fungsi keywordChange yang diterima melalui props
     handleSearch(searchTerm) {
         this.setState({ searchTerm });
+
+        this.props.keywordChange(searchTerm);
     }
 
     render() {
         const filteredNotes = this.state.notes.filter(note =>
-            (note.title && note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())) ||
-            (note.body && note.body.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+            (note.title && note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
         );
 
         return (
             <div className="note-app">
                 <h1>Notes App</h1>
                 <h1>Daftar Catatan</h1>
-                <SearchNotes onSearch={this.handleSearch} />
+                <SearchBar keyword={this.state.searchTerm} keywordChange={this.handleSearch} />
                 {filteredNotes.length === 0 ? (
                     <p>Tidak ada data catatan</p>
                 ) : (
@@ -56,4 +65,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default HomePageWrapper;
