@@ -265,3 +265,15 @@ img {
 .note-item__detail-link:hover {
   background-color: rgba(255, 255, 255, 0.9);
 }
+
+.note-detail__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.note-detail__button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-left: 10px;
+}

@@ -11,7 +11,7 @@ let notes = [
     title: "Functional Component",
     body: "Functional component merupakan React component yang dibuat menggunakan fungsi JavaScript. Agar fungsi JavaScript dapat disebut component ia harus mengembalikan React element dan dipanggil layaknya React component.",
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: true,
   },
   {
     id: 3,
@@ -56,6 +56,12 @@ const showFormattedDate = (date) => {
 function addNote(note) {
   notes = [...notes, { id: +new Date(), createdAt: new Date(), archived: false, ...note }];
 }
- 
 
-export { notes, showFormattedDate, addNote };
+function deleteNote(id) {
+  const index = notes.findIndex(note => note.id === id);
+  if (index !== -1) {
+    notes.splice(index, 1);
+  }
+}
+ 
+export { notes, showFormattedDate, addNote, deleteNote };

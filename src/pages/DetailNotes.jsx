@@ -1,20 +1,29 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { showFormattedDate } from '../utils/index';
+import { useParams, useNavigate } from 'react-router-dom';
+import { showFormattedDate, deleteNote } from '../utils/index';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+import { BsArchive } from 'react-icons/bs';
+import { notes } from '../utils/index';
 
-
-const DetailNote = ({ notes }) => {
+const DetailNote = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const note = notes.find((note) => note.id === parseInt(id));
 
-  console.log(`cek id: ${id}`)
-  console.log(`cek note: ${note}`)
+  const handleDelete = () => {
+    deleteNote(id)
+    navigate('/');
+  };
 
   return note ? (
     <div className="note-detail">
       <h2 className="note-detail__title">{note.title}</h2>
       <p className="note-detail__content">{note.body}</p>
       <p className="note-detail__date">{showFormattedDate(note.dateCreated)}</p>
+      <div className="note-detail__buttons">
+        <button className="note-detail__button"><BsArchive /> Archive</button>
+        <button className="note-detail__button" onClick={handleDelete}><RiDeleteBin5Line /> Delete</button>
+      </div>
     </div>
   ) : (
     <div className="note-detail">

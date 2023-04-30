@@ -3,7 +3,6 @@ import NoteList from '../components/NoteList';
 import { notes } from '../utils/index';
 import SearchBar from '../components/SearchBar';
 import { useSearchParams } from 'react-router-dom';
-import DetailNotes from "./DetailNotes"
 
 function HomePageWrapper() {
     // Menggunakan hook useSearchParams untuk mengakses dan mengubah parameter pencarian pada URL
@@ -19,7 +18,7 @@ function HomePageWrapper() {
 
     return (
         <>
-        <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+            <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
         </>
     )
 }
@@ -52,21 +51,39 @@ class HomePage extends React.Component {
 
     render() {
         const filteredNotes = this.state.notes.filter(note =>
+            note.archived === false &&
+            note.title &&
+            note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        );
+
+        const filteredNotesArchived = this.state.notes.filter(note =>
+            note.archived === true &&
             (note.title && note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
         );
 
         return (
             <div className="note-app">
-
                 <h1>Daftar Catatan</h1>
                 <SearchBar keyword={this.state.searchTerm} keywordChange={this.handleSearch} />
+
+                <h2>Catatan Aktif</h2>
                 {filteredNotes.length === 0 ? (
                     <p>Tidak ada data catatan</p>
                 ) : (
-                    <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler} />
+                    <div>
+                        <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler} />
+                    </div>
+                )}
+
+                <h2>Catatan Arsip</h2>
+                {filteredNotesArchived.length === 0 ? (
+                    <p>Tidak ada data catatan</p>
+                ) : (
+                    <NoteList notes={filteredNotesArchived} onDelete={this.onDeleteHandler} />
                 )}
             </div>
         );
+
     }
 }
 
