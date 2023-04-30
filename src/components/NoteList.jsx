@@ -1,7 +1,7 @@
 import React from 'react';
 import NoteItem from '../components/NoteItem';
  
-function NoteList({ notes }) {
+function NoteList({ notes, onDelete }) {
  return (
    <div className="note-list">
      {
@@ -11,6 +11,7 @@ function NoteList({ notes }) {
          id={note.id}
          dateCreated={note.createdAt}
          noteId={note.id}
+         onDelete={onDelete}
          {...note}
          />
        ))

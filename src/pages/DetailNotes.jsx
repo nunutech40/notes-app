@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { showFormattedDate, deleteNote } from '../utils/index';
+import { showFormattedDate } from '../utils/index';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { BsArchive } from 'react-icons/bs';
-import { notes } from '../utils/index';
+
+import { deleteNote, notes, archiveNote } from '../utils/index';
 
 const DetailNote = () => {
   const navigate = useNavigate();
@@ -15,13 +16,18 @@ const DetailNote = () => {
     navigate('/');
   };
 
+  const handeArchive = () => {
+    archiveNote(id);
+    navigate('/');
+  }
+
   return note ? (
     <div className="note-detail">
       <h2 className="note-detail__title">{note.title}</h2>
       <p className="note-detail__content">{note.body}</p>
       <p className="note-detail__date">{showFormattedDate(note.dateCreated)}</p>
       <div className="note-detail__buttons">
-        <button className="note-detail__button"><BsArchive /> Archive</button>
+        <button className="note-detail__button" onClick={handeArchive}><BsArchive /> Archive</button>
         <button className="note-detail__button" onClick={handleDelete}><RiDeleteBin5Line /> Delete</button>
       </div>
     </div>

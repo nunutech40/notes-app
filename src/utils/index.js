@@ -58,10 +58,22 @@ function addNote(note) {
 }
 
 function deleteNote(id) {
-  const index = notes.findIndex(note => note.id === id);
+
+  // Find the index of the note with the given id
+  const index = notes.findIndex((note) => note.id === parseInt(id));
+  
+  // If a note with the given id is found, remove it from the array
   if (index !== -1) {
     notes.splice(index, 1);
   }
+
+}
+
+function archiveNote(id) {
+  const index = notes.findIndex((note) => note.id === parseInt(id));
+  if (index !== -1) {
+    notes[index].archived = true;
+  }
 }
  
-export { notes, showFormattedDate, addNote, deleteNote };
+export { notes, showFormattedDate, addNote, deleteNote, archiveNote };
