@@ -1,6 +1,6 @@
 /* Reset CSS */
 
-  {
+*{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -264,30 +264,4 @@ img {
 /* Note item detail link hover effect */
 .note-item__detail-link:hover {
   background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* NoteDetail.css */
-.note-detail {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.note-detail__title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-.note-detail__content {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-}
-
-.note-detail__date {
-  font-size: 14px;
-  color: #777;
-  margin-top: 16px;
 }
