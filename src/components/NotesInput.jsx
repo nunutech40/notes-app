@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { addNote as apiAddNote } from '../utils/api';
 
 class NotesInput extends React.Component {
 
@@ -46,10 +47,15 @@ class NotesInput extends React.Component {
         });
     }
 
-    onSubmitEventHandler(event) {
+    async onSubmitEventHandler(event) {
         event.preventDefault();
-        this.props.addNoteList(this.state);
-        this.resetForm();
+        const { title, body } = this.state;
+        const { error } = await apiAddNote({ title, body });
+
+        if (!error) {
+            this.props.addNoteList(this.state);
+            this.resetForm();
+        }
     }
 
 

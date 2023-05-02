@@ -1,6 +1,6 @@
 import React from 'react';
 import NoteList from '../components/NoteList';
-import { notes } from '../utils/index';
+import { getActiveNotes, getArchivedNotes, deleteNote } from '../utils/api';
 import SearchBar from '../components/SearchBar';
 import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -34,7 +34,8 @@ class HomePage extends React.Component {
         super(props);
 
         this.state = {
-            notes: notes,
+            activeNotes: [],
+            archivedNotes: [],
             searchTerm: props.defaultKeyword || '',
         }
 
@@ -42,9 +43,27 @@ class HomePage extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    onDeleteHandler(id) {
-        const notes = this.state.notes.filter(note => note.id !== id);
-        this.setState({ notes });
+    async componentDidMount() {
+        const { data: notesActive } = await getActiveNotes();
+        const { data: noteArchive } = await getArchivedNotes();
+    
+        this.setState(() => {
+            return {
+                activeNotes: notesActive,
+                archivedNotes: noteArchive
+            }
+        });
+    }
+
+    async onDeleteHandler(id) {
+        // Call the deleteNote function from your API utility
+        const { error } = await deleteNote(id);
+
+        if (!error) {
+            const activeNotes = this.state.activeNotes.filter(note => note.id !== id);
+            const archivedNotes = this.state.archivedNotes.filter(note => note.id !== id);
+            this.setState({ activeNotes, archivedNotes });
+        }
     }
 
     // Method untuk mengubah nilai searchTerm pada state
@@ -56,14 +75,12 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const filteredNotes = this.state.notes.filter(note =>
-            note.archived === false &&
+        const filteredNotes = this.state.activeNotes.filter(note =>
             note.title &&
             note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
         );
 
-        const filteredNotesArchived = this.state.notes.filter(note =>
-            note.archived === true &&
+        const filteredNotesArchived = this.state.archivedNotes.filter(note =>
             (note.title && note.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
         );
 

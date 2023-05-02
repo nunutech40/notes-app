@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePageWrapper from './pages/HomePage';
@@ -83,7 +83,7 @@ class NotesApp extends React.Component {
     if (this.state.initializing) {
       return null;
     }
-
+  
     if (this.state.authedUser === null) {
       return (
         <LocaleProvider value={this.state.localeContext}>
@@ -103,10 +103,9 @@ class NotesApp extends React.Component {
             </main>
           </div>
         </LocaleProvider>
-
       )
     }
-
+  
     return (
       <LocaleProvider value={this.state.localeContext}>
         <div
@@ -114,6 +113,7 @@ class NotesApp extends React.Component {
         >
           <header className='notes-app__header'>
             <h1>Aplikasi Kontak</h1>
+            <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Notes' : 'Notes App'}</h1>
             <Navigation logout={this.onLogout} name={this.state.authedUser.name} />
           </header>
           <main>
@@ -127,9 +127,10 @@ class NotesApp extends React.Component {
           </main>
         </div>
       </LocaleProvider>
-
     );
   }
+  
+  
 }
 
 export default NotesApp;
