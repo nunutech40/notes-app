@@ -45,6 +45,7 @@ class NotesApp extends React.Component {
 
     this.onLoginSuccess = this.onLoginSuccess.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
   }
 
   // mengambil kembali data autheduser ketika refresh
@@ -56,6 +57,10 @@ class NotesApp extends React.Component {
         initializing: false
       };
     });
+  }
+
+  handleKeywordChange(newKeyword) {
+    
   }
 
   async onLoginSuccess({ accessToken }) {
@@ -121,7 +126,7 @@ class NotesApp extends React.Component {
           <main>
             <div className='note-app'>
               <Routes>
-                <Route path="/" element={<HomePageWrapper />} />
+                <Route path="/" element={<HomePageWrapper keywordChange={this.handleKeywordChange} />} />
                 <Route path="/add" element={<AddNotePage />} />
                 <Route path="/detail/:id" element={<DetailNotes />} />
               </Routes>
