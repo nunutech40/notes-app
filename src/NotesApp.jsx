@@ -109,7 +109,14 @@ class NotesApp extends React.Component {
             <div>
               <header className='notes-app__header'>
                 <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Notes' : 'Notes App'}</h1>
-                <Navigation logout={this.onLogout} name={this.state.authedUser?.name} authed={this.state.authedUser !== null} />
+
+                <Navigation
+                  logout={this.onLogout}
+                  name={this.state.authedUser?.name}
+                  authed={this.state.authedUser !== null}
+                  toggleTheme={this.toggleTheme}
+                />
+
               </header>
               <main>
                 <div className='note-app'>

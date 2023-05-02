@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LocaleConsumer } from '../context/LocaleContext';
 import { FiHome, FiPlusCircle, FiLogOut } from 'react-icons/fi';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 function Navigation({ logout, name, authed, toggleTheme }) {
   return (
@@ -37,5 +38,12 @@ function Navigation({ logout, name, authed, toggleTheme }) {
     </LocaleConsumer>
   );
 }
+
+Navigation.propTypes = {
+  logout: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  authed: PropTypes.bool.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+};
 
 export default Navigation;

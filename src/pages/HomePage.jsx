@@ -24,11 +24,6 @@ function HomePageWrapper() {
     )
 }
 
-HomePageWrapper.propTypes = {
-    defaultKeyword: PropTypes.string,
-    keywordChange: PropTypes.func.isRequired,
-};
-
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
