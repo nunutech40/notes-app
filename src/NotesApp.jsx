@@ -14,12 +14,14 @@ class NotesApp extends React.Component {
   constructor(props) {
     super(props);
 
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
     this.state = {
       authedUser: null,
       initializing: true,
       localeContext: {
         locale: 'id',
-        theme: 'light',
+        theme: savedTheme,
         toggleLocale: () => {
           this.setState((prevState) => {
             return {
@@ -30,22 +32,31 @@ class NotesApp extends React.Component {
             }
           })
         },
-        toggleTheme: () => {
-          this.setState((prevState) => {
-            return {
-              localeContext: {
-                ...prevState.localeContext,
-                theme: prevState.localeContext.theme === 'light' ? 'dark' : 'light',
-              },
-            };
-          });
-        },
       }
     };
 
     this.onLoginSuccess = this.onLoginSuccess.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
+  }
+
+  // Add the toggleTheme method outside the constructor
+  toggleTheme() {
+    this.setState(
+      (prevState) => {
+        const newTheme = prevState.localeContext.theme === 'light' ? 'dark' : 'light';
+        return {
+          localeContext: {
+            ...prevState.localeContext,
+            theme: newTheme,
+          },
+        };
+      },
+      () => {
+        localStorage.setItem('theme', this.state.localeContext.theme);
+      }
+    );
   }
 
   // mengambil kembali data autheduser ketika refresh
@@ -60,7 +71,7 @@ class NotesApp extends React.Component {
   }
 
   handleKeywordChange(newKeyword) {
-    
+
   }
 
   async onLoginSuccess({ accessToken }) {
@@ -121,7 +132,12 @@ class NotesApp extends React.Component {
         >
           <header className='notes-app__header'>
             <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Notes' : 'Notes App'}</h1>
-            <Navigation logout={this.onLogout} name={this.state.authedUser?.name} authed={this.state.authedUser !== null} />
+            <Navigation
+              logout={this.onLogout}
+              name={this.state.authedUser?.name}
+              authed={this.state.authedUser !== null}
+              toggleTheme={this.toggleTheme} // Pass the toggleTheme function as a prop
+            />
           </header>
           <main>
             <div className='note-app'>

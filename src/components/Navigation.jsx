@@ -4,11 +4,11 @@ import { LocaleConsumer } from '../context/LocaleContext';
 import { FiHome, FiPlusCircle, FiLogOut } from 'react-icons/fi';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
-function Navigation({ logout, name, authed }) {
+function Navigation({ logout, name, authed, toggleTheme }) {
   return (
     <LocaleConsumer>
       {
-        ({ locale, theme, toggleLocale, toggleTheme }) => {
+        ({ locale, theme, toggleLocale }) => { // Fixed typo: llocale -> locale
           return (
             <nav className="nav">
               <ul className="nav__list">
