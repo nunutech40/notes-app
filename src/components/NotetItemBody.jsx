@@ -7,8 +7,6 @@ function NoteItemBody({ title, body, dateCreated, id, onDelete }) {
     const maxWords = 20; // Maximum number of words to display
     const maxChars = 30;
 
-    console.log(`cek idddd: ${id}`)
-
     const truncateChars = (text, limit) => {
         if (text.length <= limit) {
             return text;
