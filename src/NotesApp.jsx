@@ -83,38 +83,40 @@ class NotesApp extends React.Component {
     if (this.state.initializing) {
       return null;
     }
-  
+
     if (this.state.authedUser === null) {
       return (
         <LocaleProvider value={this.state.localeContext}>
-          <div>
-            <header>
-              <div className="nav">
-                <h1>Aplikasi Kontak</h1>
-              </div>
-            </header>
-            <main>
-              <div className='note-app'>
-                <Routes>
-                  <Route path="/*" element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                </Routes>
-              </div>
-            </main>
+          <div
+            className={`theme ${this.state.localeContext.theme === 'light' ? 'light-theme' : 'dark-theme'}`}
+          >
+            <div>
+              <header className='notes-app__header'>
+                <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Notes' : 'Notes App'}</h1>
+                <Navigation logout={this.onLogout} name={this.state.authedUser?.name} authed={this.state.authedUser !== null} />
+              </header>
+              <main>
+                <div className='note-app'>
+                  <Routes>
+                    <Route path="/*" element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                  </Routes>
+                </div>
+              </main>
+            </div>
           </div>
         </LocaleProvider>
       )
     }
-  
+
     return (
       <LocaleProvider value={this.state.localeContext}>
         <div
           className={`theme ${this.state.localeContext.theme === 'light' ? 'light-theme' : 'dark-theme'}`}
         >
           <header className='notes-app__header'>
-            <h1>Aplikasi Kontak</h1>
             <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Notes' : 'Notes App'}</h1>
-            <Navigation logout={this.onLogout} name={this.state.authedUser.name} />
+            <Navigation logout={this.onLogout} name={this.state.authedUser?.name} authed={this.state.authedUser !== null} />
           </header>
           <main>
             <div className='note-app'>
@@ -129,8 +131,8 @@ class NotesApp extends React.Component {
       </LocaleProvider>
     );
   }
-  
-  
+
+
 }
 
 export default NotesApp;
